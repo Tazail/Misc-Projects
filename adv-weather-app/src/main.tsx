@@ -13,3 +13,7 @@ createRoot(document.getElementById('root')!).render(
     </QueryClientProvider>
   </StrictMode>,
 )
+
+// Tailwind
+// Zod - ts
+// TanScript Query
