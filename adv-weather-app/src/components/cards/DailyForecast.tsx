@@ -2,6 +2,7 @@
 import Card from './Card'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { getWearther } from '../../api'
+import WeatherIcon from '../WeatherIcon'
 
 type Props = {}
 
@@ -19,11 +20,7 @@ export default function DailyForecast({ }: Props) {
           <p className='w-9'>{new Date(day.dt * 1000).toLocaleDateString('en-US', {
             weekday: "short"
           })}</p>
-          <img
-            className="size-8"
-            src={`https://openweathermap.org/payload/api/media/file/${day.weather[0].icon}.png`}
-            alt="Weather Icon"
-          />
+          <WeatherIcon src={day.weather[0].icon} />
           <p>{Math.round(day.temp.day)}°C</p>
           <p className="text-gray-500/75">{Math.round(day.temp.min)}°C</p>
           <p className="text-gray-500/75">{Math.round(day.temp.max)}°C</p>
