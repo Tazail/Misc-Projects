@@ -3,6 +3,7 @@ import { getWearther } from "./api"
 import DailyForecast from "./components/cards/DailyForecast"
 import HourlyForecast from "./components/cards/HourlyForecast.tsx"
 import CurrentWeather from "./components/cards/CurrentWeather.tsx"
+import AdditionalInfo from "./components/cards/AdditionalInfo.tsx"
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <CurrentWeather />
         <HourlyForecast />
         <DailyForecast />
+        <AdditionalInfo />
       </div>
     )
   )
