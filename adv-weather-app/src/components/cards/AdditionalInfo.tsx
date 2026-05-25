@@ -7,6 +7,7 @@ import Cloud from "/src/assets/cloud.svg?react"
 import Uv from "/src/assets/uv.svg?react"
 import Wind from "/src/assets/wind.svg?react"
 import Pressure from "/src/assets/pressure.svg?react"
+import UpArrow from "/src/assets/uparrow.svg?react"
 
 
 type Props = {};
@@ -41,6 +42,8 @@ function FormatComponent({ value, number }: { value: string, number: number }) {
       hour: "numeric",
       minute: "2-digit"
     })
+
+  if (value === 'wind_deg') return <UpArrow className="size-6 invert" style={{ transform: `rotate(${number}deg)` }} />
 
   return number
 }
