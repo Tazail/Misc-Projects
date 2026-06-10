@@ -6,11 +6,19 @@ import Map from "./components/Map.tsx"
 import { useState } from "react"
 import type { Coords } from "./types.ts"
 import LocationDropdown from "./components/dropdowns/LocationDropdown.tsx"
+import { useQuery } from "@tanstack/react-query"
+import { getGeocode } from "./api.ts"
 
 
 function App() {
 
   const [coords, setCoords] = useState<Coords>({ lat: 50, lon: 65 })
+  const [location, srtLocation] = useState('Tokyo')
+
+  const { data } = useQuery({
+    queryKey: ['geocode', location],
+    queryFn: () => getGeocode(location)
+  })
 
   const onMapClick = (lat: number, lon: number) => {
     setCoords({ lat, lon })
