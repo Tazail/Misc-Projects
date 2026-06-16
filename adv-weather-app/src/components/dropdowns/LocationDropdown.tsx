@@ -1,16 +1,19 @@
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import type { Dispatch, SetStateAction } from "react";
 
-type Props = {}
+type Props = {
+  location: string,
+  setLocation: Dispatch<SetStateAction<string>>
+}
 
-export default function LocationDropdown({ }: Props) {
-  return (<Select>
+export default function LocationDropdown({ location, setLocation }: Props) {
+  return (<Select value={location} onValueChange={(value) => setLocation(value)}>
     <SelectTrigger className="w-[180px]">
       <SelectValue placeholder="Theme" />
     </SelectTrigger>

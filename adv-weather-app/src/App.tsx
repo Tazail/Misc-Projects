@@ -12,22 +12,28 @@ import { getGeocode } from "./api.ts"
 
 function App() {
 
-  const [coords, setCoords] = useState<Coords>({ lat: 50, lon: 65 })
-  const [location, srtLocation] = useState('Tokyo')
+  const [coordinates, setCoords] = useState<Coords>({ lat: 50, lon: 65 })
+  const [location, setLocation] = useState('Tokyo')
 
-  const { data } = useQuery({
+  const { data: geocodeData } = useQuery({
     queryKey: ['geocode', location],
     queryFn: () => getGeocode(location)
   })
 
   const onMapClick = (lat: number, lon: number) => {
     setCoords({ lat, lon })
+    setLocation('custom')
   }
+
+  const coords =
+    location === 'custom'
+      ? coordinates
+      : { lat: geocodeData?.[0].lat ?? 0, lon: geocodeData?.[0].lon ?? 0 }
 
   return (
     (
       <div className="flex flex-col gap-8">
-        <LocationDropdown />
+        <LocationDropdown location={location} setLocation={setLocation} />
         <Map coords={coords} onMapClick={onMapClick} />
         <CurrentWeather coords={coords} />
         <HourlyForecast coords={coords} />
